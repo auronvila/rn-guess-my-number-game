@@ -28,6 +28,11 @@ export default function GameScreen(props) {
     }
   }, [currentGues, props.userNumber, props.gameOverHandler]);
 
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
+
   function nextGuesshandler(direction) {
     if ((direction === 'lower' && currentGues < props.userNumber) || (direction === 'greater' && currentGues > props.userNumber)) {
       Alert.alert('Do not Lie', 'You know that this is wrong...', [{text: 'sorry!', style: 'cancel'}])
