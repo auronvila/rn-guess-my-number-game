@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
   },
   instructionTextStyle: {
     color: Colors.primary600,
-    fontSize: 24
+    fontSize: 24,
+    fontFamily: 'open-sans-regular'
   }
 });
