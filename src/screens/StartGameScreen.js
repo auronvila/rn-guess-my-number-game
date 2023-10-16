@@ -47,7 +47,7 @@ export default function StartGameScreen(props) {
         />
         <View style={styles.buttonsContainer}>
           <View style={{flex: 1}}>
-            <PrimaryButton resetInput={resetInput}>Reset</PrimaryButton>
+            <PrimaryButton onPress={resetInput}>Reset</PrimaryButton>
           </View>
           <View style={{flex: 1}}>
             <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
