@@ -1,4 +1,4 @@
-import {Alert, FlatList, StyleSheet, Text, View} from 'react-native';
+import {Alert, FlatList, ScrollView, StyleSheet, Text, useWindowDimensions, View} from 'react-native';
 import Title from '../components/ui/Title';
 import {useEffect, useState} from 'react';
 import NumberContainer from '../components/game/NumberContainer';
@@ -23,6 +23,7 @@ export default function GameScreen(props) {
   const initialGuess = generateRandomBetween(1, 100, props.userNumber);
   const [currentGues, setCurrentGues] = useState(initialGuess);
   const [guessRounds, setGuessRounds] = useState([]);
+  const {width, height} = useWindowDimensions();
 
   useEffect(() => {
     if (currentGues === props.userNumber) {
@@ -52,10 +53,8 @@ export default function GameScreen(props) {
   }
 
   const guessedRoundListLength = guessRounds.length;
-
-  return (
-    <View style={styles.container}>
-      <Title>Oponents Guess</Title>
+  let content =
+    <>
       <NumberContainer>{currentGues}</NumberContainer>
       <Card>
         <Text style={styles.instructionTextStyle}>Lower or Higher</Text>
@@ -76,12 +75,42 @@ export default function GameScreen(props) {
           </View>
         </View>
       </Card>
-      <View style={{flex: 1, padding: 16}}>
+    </>
+
+  if (width > height) {
+    content =
+      <>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{flex: 1}}>
+            <PrimaryButton
+              onPress={nextGuesshandler.bind(this, 'lower')}>
+              <Ionicons size={24} color={'white'}
+                        name={'md-remove'}/>
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{currentGues}</NumberContainer>
+          <View style={{flex: 1}}>
+            <PrimaryButton
+              onPress={nextGuesshandler.bind(this, 'greater')}>
+              <Ionicons size={24} color={'white'}
+                        name={'md-add'}/>
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+  }
+
+  return (
+    <View style={styles.container}>
+      <Title>Oponents Guess</Title>
+      {content}
+      <View style={styles.listStyle}>
         <FlatList
           keyExtractor={(item) => item}
           data={guessRounds}
           renderItem={(itemData) => <GuessLogItem guess={itemData.item}
-                                                  itemData={guessedRoundListLength - itemData.index}/>}/>
+                                                  itemData={guessedRoundListLength - itemData.index}/>}
+        />
       </View>
     </View>
   )
@@ -103,5 +132,9 @@ const styles = StyleSheet.create({
     color: Colors.primary600,
     fontSize: 24,
     marginBottom: 15,
+  },
+  listStyle: {
+    flex: 1,
+    padding: 25
   }
 })
