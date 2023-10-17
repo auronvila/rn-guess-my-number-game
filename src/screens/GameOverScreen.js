@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     padding: 24,
-    justifyContent: 'center',
+    marginTop:22,
     alignItems: 'center'
   },
   imageContainerStyle: {
-    borderRadius: 200,
+    borderRadius: deviceWidth < 390 ? 100 : 200,
     width: deviceWidth < 390 ? 200 : 300,
     height: deviceWidth < 390 ? 200 : 300,
     borderWidth: 3,
