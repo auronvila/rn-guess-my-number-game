@@ -1,8 +1,10 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, TextInput, View} from 'react-native';
 import {Colors} from '../../../constants/colors';
 
-export default function Card(props){
-  return(
+const deviceWidth = Dimensions.get('window').width;
+
+export default function Card(props) {
+  return (
     <View style={styles.inputContainer}>
       {props.children}
     </View>
@@ -10,8 +12,8 @@ export default function Card(props){
 }
 const styles = StyleSheet.create({
   inputContainer: {
-    padding: 16,
-    marginTop: 36,
+    padding: deviceWidth < 390 ? 13 : 16,
+    marginTop: deviceWidth < 390 ? 11 : 36,
     marginHorizontal: 24,
     borderRadius: 8,
     backgroundColor: Colors.primary400,

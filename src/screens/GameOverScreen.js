@@ -1,7 +1,9 @@
-import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import Title from '../components/ui/Title';
 import {Colors} from '../../constants/colors';
 import PrimaryButton from '../components/ui/PrimaryButton';
+
+const deviceWidth = Dimensions.get('window').width;
 
 export default function GameOverScreen(props) {
   return (
@@ -30,8 +32,8 @@ const styles = StyleSheet.create({
   },
   imageContainerStyle: {
     borderRadius: 200,
-    width: 300,
-    height: 300,
+    width: deviceWidth < 390 ? 200 : 300,
+    height: deviceWidth < 390 ? 200 : 300,
     borderWidth: 3,
     borderColor: Colors.primary600,
     overflow: 'hidden',

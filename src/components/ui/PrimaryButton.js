@@ -1,5 +1,8 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Pressable, StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../../constants/colors';
+
+
+const deviceWidth = Dimensions.get('window').width;
 
 export default function PrimaryButton(props) {
   function handlePress() {
@@ -26,8 +29,8 @@ const styles = StyleSheet.create({
   },
   buttonInnerContainer: {
     backgroundColor: Colors.primary500,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: deviceWidth < 390 ? 5 : 8,
+    paddingHorizontal: deviceWidth < 390 ? 11 : 16,
     elevation: 3,
     shadowColor: 'black',
     shadowOffset: {height: 2, width: 4},
