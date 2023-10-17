@@ -1,5 +1,5 @@
 import {Dimensions, Image, SafeAreaView, ScrollView, StyleSheet, Text, useWindowDimensions, View} from 'react-native';
-import Title from '../components/ui/Title';
+import TitleAndroid from '../components/ui/Title';
 import {Colors} from '../../constants/colors';
 import PrimaryButton from '../components/ui/PrimaryButton';
 
@@ -24,9 +24,9 @@ export default function GameOverScreen(props) {
   return (
     <ScrollView style={{flex: 1}}>
       <SafeAreaView style={styles.rootContainer}>
-        <Title>
+        <TitleAndroid>
           GAME OVER!
-        </Title>
+        </TitleAndroid>
         <View style={styles.imageContainerStyle}>
           <Image style={[styles.imageContainer, imageStyle]} source={require('../../assets/images/success.png')}/>
         </View>
